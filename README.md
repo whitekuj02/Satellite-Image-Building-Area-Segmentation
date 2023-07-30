@@ -3,7 +3,8 @@
 
 우분투 22.04
 
-NVIDIA-SMI 535.54.03              
+NVIDIA-SMI 535.54.03   
+
 CUDA Version: 12.2 or 11.8..?
 
 # pip 라이브러리 버전
@@ -157,7 +158,9 @@ train_background.sh 를 통해 백그라운드 학습 가능
 # 데이터 위치
 
 기본 값 DBDIR = "/hdd_data/datasets/aicon" 
+
 --db_dir로 디렉토리 변경 가능
+
 --db_dir /data
 
 # 가상환경
@@ -181,4 +184,5 @@ pip install efficientunet-pytorch
 
 # 실행
 최고기록
+
 python3 -u train.py -b 32 -lr 2e-04 -aug -aug_fr -aug_bc -aug_cl -nep 20 -pf efun7_fr_bc_cl_$today
