@@ -5,15 +5,12 @@
 
 NVIDIA-SMI 535.54.03   
 
-CUDA Version: 12.2 or 11.8..?
+CUDA Version: 11.8..?
 
 # pip 라이브러리 버전
 
 torch==2.0.0+cu118
-torchvision==0.15.1+cu118
-or
-torch==1.10.2                  
-torchvision==0.8.1                
+torchvision==0.15.1+cu118            
 ...
 
 albumentations            1.0.3              pyhd8ed1ab_0    conda-forge
