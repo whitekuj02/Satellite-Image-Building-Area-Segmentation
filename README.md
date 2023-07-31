@@ -5,7 +5,7 @@
 
 NVIDIA-SMI 535.54.03   
 
-CUDA Version: 11.8..?
+CUDA Version: 11.8
 
 # pip 라이브러리 버전
 
@@ -167,12 +167,19 @@ conda create --name aicon python=3.6
 conda activate aicon
 
 conda install -y opencv
+
 conda install -y numpy
+
 conda install -y pandas
+
 conda install -y matplotlib
+
 conda install -y tqdm
+
 conda install -y scikit-learn
+
 conda install -y -c conda-forge albumentations
+
 conda install pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia
 
 pip install efficientunet-pytorch
