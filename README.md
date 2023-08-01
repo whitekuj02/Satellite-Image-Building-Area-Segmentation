@@ -190,3 +190,10 @@ pip install efficientunet-pytorch
 최고기록
 
 python3 -u train.py -b 32 -lr 2e-04 -aug -aug_fr -aug_bc -aug_cl -nep 20 -pf efun7_fr_bc_cl_$today
+
+# 사전 학습 모델
+
+Efficient U-Net template : https://github.com/zhoudaxia233/EfficientUnet-PyTorch 
+
+Pre-Trained Encoder: EfficientNet with ImageNet Dataset
+
