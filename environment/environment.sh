@@ -4,7 +4,7 @@
 eval "$(conda shell.bash hook)"
 
 # 새로운 환경 생성
-conda create --name aicon python=3.6 -y
+conda create --name aicon python=3.11.4 -y
 
 # 환경 활성화
 conda activate aicon
@@ -17,7 +17,8 @@ conda install -n aicon -y matplotlib
 conda install -n aicon -y tqdm
 conda install -n aicon -y scikit-learn
 conda install -n aicon -y -c conda-forge albumentations
-conda install -n aicon -y pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia
+# conda install -n aicon -y pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install torch==2.0.0+cu118 torchvision==0.15.1+cu118 --index-url https://download.pytorch.org/whl/cu118
 
 # pip로 패키지 설치
 pip install efficientunet-pytorch

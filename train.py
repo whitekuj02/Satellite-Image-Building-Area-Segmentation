@@ -18,14 +18,10 @@ import albumentations as A
 from efficientunet import *
 import sys
 import argparse
-# import tensorflow as tf
-# from tensorflow import keras
 from modules.dataset import SatelliteDataset
-# from modules.dataset import SatelliteDatasetSplitTrainValid
 from modules.decode import rle_encode
 from modules.dice_eval import calculate_dice_scores
 from modules.early_stop import *
-# import apex.amp as amp
 from torch.cuda.amp import GradScaler, autocast
 from sklearn.model_selection import train_test_split
 import gc
@@ -64,7 +60,7 @@ args = get_argument()
 # params
 # batch_size_cfg = 16
 batch_size_cfg = args.batch_size
-num_workers_cfg = 4
+num_workers_cfg = 8
 # lr_cfg = (batch_size_cfg/16) * 0.001
 # lr_cfg = (batch_size_cfg/16) * 0.0001
 lr_cfg = args.learning_rate
