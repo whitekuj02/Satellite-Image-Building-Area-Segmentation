@@ -162,7 +162,7 @@ train_background.sh 를 통해 백그라운드 학습 가능
 
 # 가상환경
 
-conda create --name aicon python=3.6
+conda create --name aicon python=3.11.4 -y
 
 conda activate aicon
 
@@ -180,7 +180,7 @@ conda install -y scikit-learn
 
 conda install -y -c conda-forge albumentations
 
-conda install pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install torch==2.0.0+cu118 torchvision==0.15.1+cu118 --index-url https://download.pytorch.org/whl/cu118
 
 pip install efficientunet-pytorch
 
