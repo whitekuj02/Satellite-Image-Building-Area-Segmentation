@@ -150,6 +150,10 @@ zstd                      1.5.5                hc292b87_0
 
 사용한 사전 학습 모델 : ImageNet
 
+Efficient U-Net template : https://github.com/zhoudaxia233/EfficientUnet-PyTorch 
+
+Pre-Trained Encoder: EfficientNet with ImageNet Dataset
+
 train_background.sh 를 통해 백그라운드 학습 가능
 
 # 데이터 위치
@@ -191,9 +195,28 @@ pip install efficientunet-pytorch
 
 python3 -u train.py -b 32 -lr 2e-04 -aug -aug_fr -aug_bc -aug_cl -nep 20 -pf efun7_fr_bc_cl_$today
 
-# 사전 학습 모델
+# 파일 설명
 
-Efficient U-Net template : https://github.com/zhoudaxia233/EfficientUnet-PyTorch 
+./environment/conda-packages-Nopy.txt : py가 없는 대회 conda 세팅 (참고용)
 
-Pre-Trained Encoder: EfficientNet with ImageNet Dataset
+./environment/conda-packages.txt : py가 있는 대회 conda 세팅 (참고용)
 
+./environment/requirements.txt : pip 라이브러리 list (참고용)
+
+./environment/environment.sh : 자동 세팅 파일
+
+./log : log 파일 기록 디렉토리
+
+./modules/dataset.py : 데이터 전처리 .py
+
+./modules/decode.py : rle encoder 와 decoder
+
+./modules/dice_eval.py : dice score 계산 .py
+
+./modules/early_stop.py : early_stop 함수 .py
+
+./train_background.sh : train.py 자동 백그라운드 실행 nohup
+
+./train_multi_GPU.py : 멀티 GPU 기능이 있는 .py 파일
+
+./train.pt : 메인 train 파일 
