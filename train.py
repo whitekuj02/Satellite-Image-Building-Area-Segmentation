@@ -361,12 +361,8 @@ if args.report:
             masks = np.squeeze(masks, axis=1)
             masks = (masks > 0.35).astype(np.uint8) # Threshold = 0.35
     
-            # kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-    
             for i in range(len(images)):
-                # 모폴로지 연산을 수행하여 마스크 개선
                 mask = masks[i]
-                # mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
                 mask_rle = rle_encode(mask)
                 if mask_rle == '': # 예측된 건물 픽셀이 아예 없는 경우 -1
                     result.append(-1)
