@@ -325,13 +325,10 @@ if args.validation:
                 outputs = torch.sigmoid(outputs).cpu().numpy()
                 outputs = np.squeeze(outputs, axis=1)
                 outputs = (outputs > 0.35).astype(np.uint8) # Threshold = 0.35
-    
-                kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
                 
                 for i in range(len(images)):
                     gt_rle_array.append(rle_encode(gts[i].cpu().numpy()))
-                    # 모폴로지 연산을 수행하여 마스크 개선
-                    output = cv2.morphologyEx(outputs[i], cv2.MORPH_OPEN, kernel)
+                    output = outputs[i]
                     output_rle = rle_encode(output)
                     if output_rle == '': # 예측된 건물 픽셀이 아예 없는 경우 -1
                         output_rle_array.append(-1)
@@ -345,8 +342,8 @@ if args.validation:
 
 if args.report:
     test_transform = A.Compose([
-        # A.RandomCrop(224, 224),
-        # A.Normalize(),
+        A.Resize(224, 224),
+        A.Normalize(),
         ToTensorV2()
     ])
     csv_file=f'{args.db_dir}/test.csv'

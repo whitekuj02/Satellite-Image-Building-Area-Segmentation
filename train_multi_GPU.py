@@ -387,13 +387,10 @@ def main_worker(gpu, ngpus_per_node, args):
                         outputs = torch.sigmoid(outputs).cpu().numpy()
                         outputs = np.squeeze(outputs, axis=1)
                         outputs = (outputs > 0.35).astype(np.uint8) # Threshold = 0.35
-            
-                        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
                         
                         for i in range(len(images)):
                             gt_rle_array.append(rle_encode(gts[i].cpu().numpy()))
-                            # 모폴로지 연산을 수행하여 마스크 개선
-                            output = cv2.morphologyEx(outputs[i], cv2.MORPH_OPEN, kernel)
+                            output = outputs[i]
                             output_rle = rle_encode(output)
                             if output_rle == '': # 예측된 건물 픽셀이 아예 없는 경우 -1
                                 output_rle_array.append(-1)
@@ -405,42 +402,38 @@ def main_worker(gpu, ngpus_per_node, args):
                 print(f'dice score = {np.mean(dice_score)}')
     
     
-    # if args.report:
-    #     test_transform = A.Compose([
-    #         # A.RandomCrop(224, 224),
-    #         # A.Normalize(),
-    #         ToTensorV2()
-    #     ])
-    #     csv_file=f'{args.db_dir}/test.csv'
-    #     test_dataset = SatelliteDataset(csv_file=csv_file, transform=test_transform, infer=True)
-    #     test_dataloader = DataLoader(test_dataset, batch_size=batch_size_cfg, shuffle=False, num_workers=num_workers_cfg, pin_memory=True) 
-    # 
-    #     with torch.no_grad():
-    #         model.eval()
-    #         result = []
-    #         for images in tqdm(test_dataloader):
-    #             images = images.float().to(args.gpu)
-    #             
-    #             outputs = model(images)
-    #             masks = torch.sigmoid(outputs).cpu().numpy()
-    #             masks = np.squeeze(masks, axis=1)
-    #             masks = (masks > 0.35).astype(np.uint8) # Threshold = 0.35
-    #     
-    #             kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-    #     
-    #             for i in range(len(images)):
-    #                 # 모폴로지 연산을 수행하여 마스크 개선
-    #                 mask = masks[i]
-    #                 mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
-    #                 mask_rle = rle_encode(mask)
-    #                 if mask_rle == '': # 예측된 건물 픽셀이 아예 없는 경우 -1
-    #                     result.append(-1)
-    #                 else:
-    #                     result.append(mask_rle)
-    #     
-    #     submit = pd.read_csv(f'{args.db_dir}/sample_submission.csv')
-    #     submit['mask_rle'] = result
-    #     submit.to_csv('submit_{}.csv'.format(args.time), index=False)
+    if args.report:
+        test_transform = A.Compose([
+            A.Resize(224, 224),
+            A.Normalize(),
+            ToTensorV2()
+        ])
+        csv_file=f'{args.db_dir}/test.csv'
+        test_dataset = SatelliteDataset(csv_file=csv_file, transform=test_transform, infer=True)
+        test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=8, pin_memory=True) 
+    
+        with torch.no_grad():
+            model.eval()
+            result = []
+            for images in tqdm(test_dataloader):
+                images = images.float().to(args.gpu)
+                
+                outputs = model(images)
+                masks = torch.sigmoid(outputs).cpu().numpy()
+                masks = np.squeeze(masks, axis=1)
+                masks = (masks > 0.35).astype(np.uint8) # Threshold = 0.35
+        
+                for i in range(len(images)):
+                    mask = masks[i]
+                    mask_rle = rle_encode(mask)
+                    if mask_rle == '': # 예측된 건물 픽셀이 아예 없는 경우 -1
+                        result.append(-1)
+                    else:
+                        result.append(mask_rle)
+        
+        submit = pd.read_csv(f'{args.db_dir}/sample_submission.csv')
+        submit['mask_rle'] = result
+        submit.to_csv('submit_{}.csv'.format(args.time), index=False)
     
 
 
