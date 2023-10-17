@@ -7,6 +7,7 @@ NVIDIA-SMI 535.54.03
 
 CUDA Version: 11.8
 
+setting reference : https://vividian.net/2022/11/1111 
 # pip 라이브러리 버전
 
 torch==2.0.0+cu118
