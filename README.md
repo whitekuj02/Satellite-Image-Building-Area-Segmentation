@@ -1,4 +1,5 @@
 # Satellite-Image-Building-Area-Segmentation
+데이콘 SW대학 AI공동경진대회 잉카인터넷(특별상) 21등 수상 코드
 # 환경
 
 우분투 22.04
