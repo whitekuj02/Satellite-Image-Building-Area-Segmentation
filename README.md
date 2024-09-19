@@ -113,8 +113,8 @@
 
 - ./modules/early_stop.py : early_stop 함수 .py
 
-./train_background.sh : train.py 자동 백그라운드 실행 nohup
+- ./train_background.sh : train.py 자동 백그라운드 실행 nohup
 
-./train_multi_GPU.py : 멀티 GPU 기능이 있는 .py 파일
+- ./train_multi_GPU.py : 멀티 GPU 기능이 있는 .py 파일
 
-./train.pt : 메인 train 파일 
+- ./train.pt : 메인 train 파일 
