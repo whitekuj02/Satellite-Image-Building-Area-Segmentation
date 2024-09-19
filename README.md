@@ -15,9 +15,9 @@
 
 # 팀원
 
-| 김의진 | 박지원 | 장희진 | 정승민 |
+| 김의진 | 장희진 | 박지원 | 정승민 |
 | :---: | :---: | :---: | :---: |
-| <img src="https://avatars.githubusercontent.com/u/94896197?v=4" width=300> | <img src="https://github.com/user-attachments/assets/2f1cd234-d276-4888-bb16-a1a1dc821950" width=300> | <img src="https://avatars.githubusercontent.com/u/105128163?v=4" width=300> | <img src="https://avatars.githubusercontent.com/u/105360496?v=4" width=300>
+| <img src="https://avatars.githubusercontent.com/u/94896197?v=4" width=300>  | <img src="https://avatars.githubusercontent.com/u/105128163?v=4" width=300> | <img src="https://github.com/user-attachments/assets/2f1cd234-d276-4888-bb16-a1a1dc821950" width=300> | <img src="https://avatars.githubusercontent.com/u/105360496?v=4" width=300>
 
 <br>
 
