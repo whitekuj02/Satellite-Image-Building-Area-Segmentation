@@ -1,5 +1,5 @@
 # Satellite-Image-Building-Area-Segmentation
-데이콘 SW대학 AI공동경진대회 잉카인터넷(특별상) 21등 수상 코드
+데이콘 SW대학 AI공동경진대회 잉카인터넷(특별상) 22등 수상 코드
 
 ![스크린샷 2024-09-19 174832](https://github.com/user-attachments/assets/06d16818-e0b6-438e-bada-353425268883)
 
